@@ -1,1 +1,5 @@
 theme: jekyll-theme-minimal
+ - jekyll-sitemap
+ - jekyll-avatar
+ - jemoji
+ - jekyll-mentions
