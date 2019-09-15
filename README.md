@@ -1,2 +1,1 @@
-# graysonlang.github.io
-GitHub page
+Repo for site: https://graysonlang.github.io/
