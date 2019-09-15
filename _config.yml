@@ -1,4 +1,4 @@
-theme: primer
+theme: minima
 - jekyll-mentions
 - jekyll-sitemap
 - jemoji
