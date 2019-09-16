@@ -1,0 +1,12 @@
+title: Photoshop
+description: Information
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-primer
+
+plugins:
+  - jekyll-avatar
+  - jekyll-feed
+  - jekyll-mentions
+  - jekyll-sitemap
+  - jemoji
