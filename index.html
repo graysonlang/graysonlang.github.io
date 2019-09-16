@@ -72,12 +72,11 @@ function GetHttpRequest() {
 var xhr = GetHttpRequest();
 xhr.onload = function() {
     var xml = xhr.responseXML.documentElement;
-
     // Extract sorted array of URL strings from site map XML.
     url_strings = [];
     let x = xml.getElementsByTagName("url");
     for (let i = 0; i < x.length; i++) {
-        let url = new URL(x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue);
+        let url_string = x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue;
         url_strings.push(url);
     }
     url_strings.sort();
@@ -91,7 +90,6 @@ xhr.onload = function() {
         result = url.pathname.match(rex);
         if (result && result.length > 1) {
             let path = result[1];
-            trace(path);
             let folders = path.split("/")
             let end = folders.length - 1
             while (cwd.length > end)
@@ -101,7 +99,7 @@ xhr.onload = function() {
             cwd.length = end;
             stack.length = end;
             for (let j = 0; j < folders.length; j++) {
-                // Convert name to use 
+                // Convert name to use
                 let name = decodeURI(folders[j]);
                 // Convert underscores to spaces.
                 name = name.replace(/_/g, " ");
