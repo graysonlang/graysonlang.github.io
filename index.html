@@ -81,19 +81,17 @@ xhr.onload = function() {
         url_strings.push(url);
     }
     url_strings.sort();
-
-    trace(url_strings);
-
     let toc = document.getElementById("toc");
     let cwd = [""];
     let stack = [toc];
     for (let i = 0; i < url_strings.length; i++) {
         url_string = url_strings[i];
         let url = new URL(url_string);
-        let rex = new RegExp("pages/[^/]+(.+)\.html");
+        let rex = new RegExp("/[^/]+(.+)\.html");
         result = url.pathname.match(rex);
         if (result && result.length > 1) {
             let path = result[1];
+            trace(path);
             let folders = path.split("/")
             let end = folders.length - 1
             while (cwd.length > end)
