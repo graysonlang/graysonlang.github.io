@@ -72,7 +72,6 @@ function GetHttpRequest() {
 var xhr = GetHttpRequest();
 xhr.onload = function() {
     var xml = xhr.responseXML.documentElement;
-    trace(xml);
 
     // Extract sorted array of URL strings from site map XML.
     url_strings = [];
@@ -82,6 +81,8 @@ xhr.onload = function() {
         url_strings.push(url);
     }
     url_strings.sort();
+
+    trace(url_strings);
 
     let toc = document.getElementById("toc");
     let cwd = [""];
