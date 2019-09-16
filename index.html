@@ -72,13 +72,10 @@ function GetHttpRequest() {
 var xhr = GetHttpRequest();
 xhr.onload = function() {
     var xml = xhr.responseXML.documentElement;
-    // Extract sorted array of URL strings from site map XML.
     url_strings = [];
     let x = xml.getElementsByTagName("url");
-    for (let i = 0; i < x.length; i++) {
-        let url_string = x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue;
-        url_strings.push(url_string);
-    }
+    for (let i = 0; i < x.length; i++)
+        url_strings.push(x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue);
     url_strings.sort();
     let toc = document.getElementById("toc");
     let cwd = [""];
