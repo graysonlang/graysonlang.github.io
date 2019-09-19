@@ -7,7 +7,7 @@
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}"> -->
+        <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
         <style>
 .directory-list ul {
   margin-left: 10px;
@@ -62,8 +62,10 @@
         </style>
     </head>
     <body>
+        <div class="container-lg px-3 my-5 markdown-body">
         <ul id="toc" class="directory-list"></ul>
-        <div class="container-lg px-3 my-5 markdown-body">{{ content }}</div>
+        {{ content }}
+        </div>
     </body>
     <script>
 function trace() { var e = []; let a = trace.arguments; for (var i = 0; i < a.length; i++) e.push(a[i]); var text = e.join(" ") + "\n"; if (console && console.log) console.log(a[0]); }
@@ -107,7 +109,7 @@ xhr.onload = function() {
             cwd.length = end;
             stack.length = end;
             for (let j = 0; j < folders.length; j++) {
-                // Convert name to use 
+                // Convert name to use
                 let name = decodeURI(folders[j]);
                 // Convert underscores to spaces.
                 name = name.replace(/_/g, " ");
