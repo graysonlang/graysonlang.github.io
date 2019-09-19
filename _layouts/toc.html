@@ -58,13 +58,12 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightblue' d='M96.429,37.5v39.286c0,3.423-1.228,6.361-3.684,8.817c-2.455,2.455-5.395,3.683-8.816,3.683H16.071 c-3.423,0-6.362-1.228-8.817-3.683c-2.456-2.456-3.683-5.395-3.683-8.817V23.214c0-3.422,1.228-6.362,3.683-8.817 c2.455-2.456,5.394-3.683,8.817-3.683h17.857c3.422,0,6.362,1.228,8.817,3.683c2.455,2.455,3.683,5.395,3.683,8.817V25h37.5 c3.422,0,6.361,1.228,8.816,3.683C95.201,31.138,96.429,34.078,96.429,37.5z' /></svg>");
   background-position: center top;
   background-size: 75% auto;
-}
-        </style>
+}        </style>
     </head>
     <body>
         <div class="container-lg px-3 my-5 markdown-body">
-        <ul id="toc" class="directory-list"></ul>
         {{ content }}
+        <ul id="toc" class="directory-list"></ul>
         </div>
     </body>
     <script>
@@ -81,22 +80,18 @@ function GetHttpRequest() {
 var xhr = GetHttpRequest();
 xhr.onload = function() {
     var xml = xhr.responseXML.documentElement;
-    // Extract sorted array of URL strings from site map XML.
     url_strings = [];
     let x = xml.getElementsByTagName("url");
-    for (let i = 0; i < x.length; i++) {
-        let url = new URL(x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue);
-        url_strings.push(url);
-    }
+    for (let i = 0; i < x.length; i++)
+        url_strings.push(x[i].getElementsByTagName("loc")[0].childNodes[0].nodeValue);
     url_strings.sort();
-
     let toc = document.getElementById("toc");
     let cwd = [""];
     let stack = [toc];
     for (let i = 0; i < url_strings.length; i++) {
         url_string = url_strings[i];
         let url = new URL(url_string);
-        let rex = new RegExp("pages/[^/]+(.+)\.html");
+        let rex = new RegExp("(.+)\.html");
         result = url.pathname.match(rex);
         if (result && result.length > 1) {
             let path = result[1];
